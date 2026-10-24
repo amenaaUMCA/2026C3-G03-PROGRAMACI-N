@@ -6,23 +6,30 @@ La cantidad de registros no se conoce al iniciar.
 Ingrese enteros positivos y escriba "fin" para terminar. No ingrese texto
 distinto de "fin" ni números negativos en esta práctica.
 """
+max_aforo = 700
+aforo = 0
+aceptados = []
+rechazados = []
 
-resultados = []
-entrada = input("Resultado (o fin para terminar): ").strip().lower()
+entrada = input("Cantidad de grupo (o fin para terminar): ").strip().lower()
 
 while entrada != "fin":
-    resultado = int(entrada)
-    # TODO: agregue el resultado a la lista.
-    resultados.append(resultado)
-    pass
+    grupo = int(entrada)
+    if grupo + aforo > max_aforo:
+        print("Rechazado")
+        rechazados.append(grupo)        
+    else:
+        print("Aceptado")
+        aceptados.append(grupo)
+        aforo = aforo + grupo
 
-    entrada = input("Resultado (o fin para terminar): ").strip().lower()
+    entrada = input("Cantidad de grupo (o fin para terminar): ").strip().lower()
 
-print("Resultados registrados:", resultados)
-print("Cantidad de resultados:", len(resultados))
+print("Resultados rechazados:", rechazados)
+print("Cantidad de resultados:", len(rechazados))
 
-if resultados:
-    promedio = sum(resultados) / len(resultados)
+if rechazados:
+    promedio = sum(rechazados) / len(rechazados)
     print(f"Promedio: {promedio:.2f}")
 else:
     print("No se ingresaron resultados.")
