@@ -103,3 +103,74 @@ Otros casos para probar:
 
 
 # Desarrolle su solución a partir de esta línea.
+CAPACIDAD_MAXIMA = 700
+#Listas control
+grupos_aceptados = []
+grupos_rechazados = []
+ocupacion_actual = 0 
+espacio_disponilbles = CAPACIDAD_MAXIMA - ocupacion_actual
+
+#
+print("CONTROL DE INGRESO - ANFITEATRO DEL CENAC")
+print(f"Capacidad del ecenario: {CAPACIDAD_MAXIMA} personas")
+print("Escriba 'fin' para cerrar el ingreso.")
+
+#entradas
+entrada = input("Ingrese la cantidad de personas del grupo: ").strip().lower()
+while entrada != "fin":
+  try:
+    cantidad = int(entrada)
+  except ValueError:
+    print("Entrada inválida: escriba un número entero o 'fin' para salir")
+  else:
+    if cantidad <= 0:
+      print("Entrada inválida: el grupo debe tener al menos una persona.")
+    elif ocupacion_actual + cantidad <= CAPACIDAD_MAXIMA:
+      grupos_aceptados.append(cantidad)
+      ocupacion_actual += cantidad
+      espacio_disponilbles = CAPACIDAD_MAXIMA - ocupacion_actual
+      print(f"Grupo aceptado: ingresan {cantidad} personas.")
+      print(f"Ocupación actual: {ocupacion_actual}")
+      print(f"Espacios disponibles: {espacio_disponilbles}")
+    else:
+      grupos_rechazados.append(cantidad)
+      print(f"Grupo rechazado: no hay espacio para {cantidad} personas.")
+      print(f"Ocupación actual: {ocupacion_actual}")
+      print(f"Espacios disponibles: {espacio_disponilbles}")
+    
+  entrada = input("\nCantidad de personas del grupo: ").strip().lower()
+    
+    
+    
+
+# cuando ocupacion_actual también contiene ese valor durante el registro.
+total_admitido = 0
+
+for grupo in grupos_aceptados:
+    total_admitido += grupo
+
+# A partir de las listas se construyen indicadores que ayudan a interpretar
+# el resultado del registro.
+espacios_disponibles = CAPACIDAD_MAXIMA - total_admitido
+porcentaje_ocupacion = total_admitido / CAPACIDAD_MAXIMA * 100
+
+print("\nREPORTE FINAL")
+print(f"Grupos aceptados: {len(grupos_aceptados)}")
+print(f"Grupos rechazados: {len(grupos_rechazados)}")
+print(f"Personas admitidas: {total_admitido}")
+print(f"Capacidad máxima: {CAPACIDAD_MAXIMA}")
+print(f"Espacios disponibles: {espacios_disponibles}")
+print(f"Porcentaje de ocupación: {porcentaje_ocupacion:.2f}%")
+
+# min y max requieren datos; primero se comprueba que la lista no esté vacía.
+if grupos_aceptados:
+    print(f"Grupo aceptado más pequeño: {min(grupos_aceptados)}")
+    print(f"Grupo aceptado más grande: {max(grupos_aceptados)}")
+else:
+    print("No se aceptaron grupos durante el registro.")
+
+# La clasificación convierte el indicador numérico en una lectura sencilla.
+if total_admitido == CAPACIDAD_MAXIMA:
+    print("Estado final: capacidad completa.")
+else:
+    print("Estado final: disponibilidad normal.")
