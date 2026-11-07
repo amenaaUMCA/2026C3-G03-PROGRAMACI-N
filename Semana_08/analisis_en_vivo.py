@@ -21,7 +21,7 @@ equivalencias = {
     "acetaminofen" : "acetaminofén",
     "paracetamol": "acetaminofén",
     "antiacido": "antíacido",
-    "lorsatán": "lorsatan"
+    "losartán": "losartan"
 }
 conteo_medicamentos = {}
 total_medicamentos = 0
@@ -52,7 +52,11 @@ print(conteo_medicamentos)
 print("\nANALISIS FASE #2 MEDICAMENTOS Y ATENCIONES")
 conteo_medicamentos = {}
 total_medicamentos = 0
+conteo_hospital = {}
+total_paciente = 0
 for registro in registros:
+    
+    
     for medicamento in registro['medicamentos']:
         #Limpieza PARACETAMOL -> paracetamol -> aceteminofén
         medicamento = medicamento.strip().lower()
@@ -66,9 +70,23 @@ for registro in registros:
             conteo_medicamentos[medicamento] = 1
             
 print("\nTotal de medicamentos recetados:", total_medicamentos)
-print(conteo_medicamentos)
+for medicamento, cantidad in conteo_medicamentos.items():
+    print(f"- {medicamento}:\t {cantidad}")
+print("\nTotal de PACIENTES:", total_paciente)
+
 
 # FASE 3: CONTAR ATENCIONES POR HOSPITAL
+conteo_hospital = {}
+total_paciente = 0
+for registro in registros:
+    total_paciente += 1
+    hospital = registro["hospital"]
+    if hospital not in conteo_hospital:
+        conteo_hospital[hospital] = 0
+    conteo_hospital[hospital] +=1
+print("\nTotal de PACIENTES:", total_paciente)
+for hospital, cantidad in conteo_hospital.items():
+    print(f"- {hospital}:\t {cantidad}")
 
 # FASE 4: CONTAR ATENCIONES POR ENFERMEDAD DIAGNOSTICADA
 
