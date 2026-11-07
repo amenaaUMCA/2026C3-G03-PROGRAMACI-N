@@ -16,6 +16,13 @@ if len(registros) < 3:
     raise SystemExit("Se necesitan al menos 3 registros. Publique la etapa 3.")
 
 # FASE 1: MOSTRAR Y CONTAR LOS MEDICAMENTOS DE TRES ATENCIONES
+# Cada clave es un nombre de medicamento y su valor es el nombre estandarizado
+equivalencias = {
+    "acetaminofen" : "acetaminofén",
+    "paracetamol": "acetaminofén",
+    "antiacido": "antíacido",
+    "lorsatán": "lorsatan"
+}
 conteo_medicamentos = {}
 total_medicamentos = 0
 print("\n\tANALISIS FASE #1 MUESTRA 3")
@@ -27,14 +34,19 @@ for indice in range (3):
         f"\n- Medicamentos: {registro['medicamentos']}")
 
     for medicamento in registro['medicamentos']:
-        print(medicamento)
+        #Limpieza PARACETAMOL -> paracetamol -> aceteminofén
+        medicamento = medicamento.strip().lower()
+        if medicamento in equivalencias:
+            medicamento = equivalencias[medicamento]
+        #Contar medicamentos
         total_medicamentos += 1
         if medicamento in conteo_medicamentos:
             conteo_medicamentos[medicamento] += 1
         else:
             conteo_medicamentos[medicamento] = 1
         
-print("Total de medicamentos recetados:", total_medicamentos)
+print("\nTotal de medicamentos recetados:", total_medicamentos)
+print(conteo_medicamentos)
 
 # FASE 2: CONTAR LOS MEDICAMENTOS DE TODAS LAS ATENCIONES
 print("\nANALISIS FASE #2 MEDICAMENTOS Y ATENCIONES")
