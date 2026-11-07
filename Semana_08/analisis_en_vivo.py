@@ -15,10 +15,31 @@ print("Atenciones recibidas:", len(registros))
 if len(registros) < 3:
     raise SystemExit("Se necesitan al menos 3 registros. Publique la etapa 3.")
 
-
 # FASE 1: MOSTRAR Y CONTAR LOS MEDICAMENTOS DE TRES ATENCIONES
+conteo_medicamentos = {}
+total_medicamentos = 0
+print("\n\tANALISIS FASE #1 MUESTRA 3")
+for indice in range (3):
+    registro = registros[indice]
+    print(f"\nCédula: {registro['paciente_cedula']}"
+        f"\n- Paciente: {registro['paciente_nombre']}"
+        f"\n- Diagnóstico: {registro['diagnostico']}"
+        f"\n- Medicamentos: {registro['medicamentos']}")
+
+    for medicamento in registro['medicamentos']:
+        print(medicamento)
+        total_medicamentos += 1
+        if medicamento in conteo_medicamentos:
+            conteo_medicamentos[medicamento] += 1
+        else:
+            conteo_medicamentos[medicamento] = 1
+        
+print("Total de medicamentos recetados:", total_medicamentos)
 
 # FASE 2: CONTAR LOS MEDICAMENTOS DE TODAS LAS ATENCIONES
+print("\nANALISIS FASE #2 MEDICAMENTOS Y ATENCIONES")
+for registro in registros:
+    print(registro['paciente_nombre'])
 
 # FASE 3: CONTAR ATENCIONES POR HOSPITAL
 
