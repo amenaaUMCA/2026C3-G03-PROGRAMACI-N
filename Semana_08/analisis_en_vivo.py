@@ -50,8 +50,23 @@ print(conteo_medicamentos)
 
 # FASE 2: CONTAR LOS MEDICAMENTOS DE TODAS LAS ATENCIONES
 print("\nANALISIS FASE #2 MEDICAMENTOS Y ATENCIONES")
+conteo_medicamentos = {}
+total_medicamentos = 0
 for registro in registros:
-    print(registro['paciente_nombre'])
+    for medicamento in registro['medicamentos']:
+        #Limpieza PARACETAMOL -> paracetamol -> aceteminofén
+        medicamento = medicamento.strip().lower()
+        if medicamento in equivalencias:
+            medicamento = equivalencias[medicamento]
+        #Contar medicamentos
+        total_medicamentos += 1
+        if medicamento in conteo_medicamentos:
+            conteo_medicamentos[medicamento] += 1
+        else:
+            conteo_medicamentos[medicamento] = 1
+            
+print("\nTotal de medicamentos recetados:", total_medicamentos)
+print(conteo_medicamentos)
 
 # FASE 3: CONTAR ATENCIONES POR HOSPITAL
 
