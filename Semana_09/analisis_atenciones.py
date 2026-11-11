@@ -13,12 +13,18 @@ ETAPA = 1
 def explorar_atenciones(atenciones):
     """Recibe la lista de atenciones y muestra el total, los tipos y los campos."""
     # P1. Complete el lector y compruebe el mensaje de archivo faltante.
-    print("P1. Archivo leído correctamente.")
+    if not atenciones:
+        print("Error al leeer archivo")
+    else:
+        print("P1. Archivo leído correctamente.")
 
     # P2. Cuente las filas con un ciclo. Compruebe que obtuvo 12.
+    print("Cantidad de filas:", len(atenciones))
 
     # P3. Ejemplo listo para ejecutar. Explique qué tipos y campos observa.
     primer_registro = atenciones[0]
+    print("Tipo Colección", type(atenciones))
+    print("Tipo resgistro:", type(primer_registro))
 
 
 def contar_y_limpiar(atenciones):
