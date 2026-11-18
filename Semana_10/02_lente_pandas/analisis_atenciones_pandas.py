@@ -1,7 +1,6 @@
 """El mismo expediente, con Pandas y las mismas tres funciones."""
 
 from pathlib import Path
-from types import SimpleNamespace
 import pandas as pd
 # Aquí importaremos pandas (ej. import pandas as pd).
 
@@ -28,8 +27,8 @@ def concluir(atenciones):
     # Contamos personas únicas por cédula, visitas por persona, total y promedio de espera.
     print("\nPersonas: ", atenciones['cedula'].nunique())
     print("Visita", atenciones['cedula'].value_counts())
-    
-
+    print("\nMinutos de espera:", atenciones['minutos_espera'].sum())
+    print("Promedio:", atenciones['minutos_espera'].mean())
 
 try:
     # Leemos el CSV con pd.read_csv(ARCHIVO_CSV). Se usa SimpleNamespace(empty=True) para evitar error.
