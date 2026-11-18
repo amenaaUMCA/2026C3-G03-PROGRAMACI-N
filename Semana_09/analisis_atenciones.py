@@ -7,7 +7,7 @@ y luego a 3 conforme verifique cada parte con python analisis_atenciones.py.
 from lector_csv import cargar_atenciones
 
 
-ETAPA = 1
+ETAPA = 2
 
 
 def explorar_atenciones(atenciones):
@@ -32,9 +32,13 @@ def contar_y_limpiar(atenciones):
     print("Etapa 2. Complete y compruebe las preguntas 4 a 8.")
     # P4. Cuente los medicamentos tal como aparecen en el CSV con .get().
     # Muestre el contador y su total.
+    cantidad_medicamentos = 0
+    for  paciente in atenciones:
+        cantidad_medicamentos += 1
 
     # P5. Muestre ejemplos de espacios o mayúsculas en hospital,
     # diagnostico y medicamento.
+    print("Error de espacios:", atenciones[-2]['medicamento'])
 
     # P6. Cuente los medicamentos con strip() y lower(). Muestre el
     # contador limpio y su total. Compare con P4.
@@ -47,6 +51,7 @@ def contar_y_limpiar(atenciones):
     # P8. Cuente hospitales y diagnósticos con los nombres limpios.
     # Muestre ambos contadores, sus totales y la categoría más frecuente de
     # cada campo.
+    print("Cantidad de medicamentos recetados:", cantidad_medicamentos)
 
 
 def concluir(atenciones):
