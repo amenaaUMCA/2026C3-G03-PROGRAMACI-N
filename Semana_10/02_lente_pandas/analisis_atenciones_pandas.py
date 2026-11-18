@@ -11,21 +11,24 @@ ARCHIVO_CSV = Path(__file__).with_name("atenciones.csv")
 def explorar_atenciones(atenciones):
     """Decisión 1: ¿qué leímos y cuántas atenciones hay?"""
     # Contamos las filas del DataFrame y mostramos los nombres de sus columnas.
-    pass
+    print("Atenciones: ", len(atenciones))
+    print("Campos:", list(atenciones.columns))
 
 
 def contar_categorias(atenciones):
     """Decisión 2: ¿qué medicamentos, hospitales y diagnósticos aparecen?"""
     # Contamos la frecuencia de cada medicamento, hospital y diagnóstico usando Pandas.
-    print("Atenciones: ", len(atenciones))
-    print("Campos:", list(atenciones.columns))
+    print("Medicamentos:", atenciones["medicamento"].value_counts().to_dict())
+    print("\nHospitales:\n", atenciones['hospital'].value_counts())
+    print("\nDiagnosticos:\n", atenciones['diagnostico'].value_counts())
 
 
 def concluir(atenciones):
     """Decisiones 3 y 4: ¿cuántas personas hay y cuánto esperaron?"""
     # Contamos personas únicas por cédula, visitas por persona, total y promedio de espera.
-    print("Medicamentos:", atenciones["medicamento"].value_counts().to_dict())
-    print("\nHospitales:\n", atenciones['hospital'].value_counts())
+    print("\nPersonas: ", atenciones['cedula'].nunique())
+    print("Visita", atenciones['cedula'].value_counts())
+    
 
 
 try:
